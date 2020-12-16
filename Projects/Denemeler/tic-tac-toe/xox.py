@@ -5,7 +5,7 @@ LINE = (0, 100, 100)
 WHITE = (240, 240, 240)
 BLACK = (30, 30, 30)
 
-xOxList = ['', '', '', '', '', '', '', '', '']
+xOxList = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 pygame.init()
 screen = pygame.display.set_mode((600, 600))
@@ -18,9 +18,6 @@ def drawing_lines():
     pygame.draw.line(screen, LINE, (0, 400), (600, 400), 8)
     pygame.draw.line(screen, LINE, (200, 0), (200, 600), 8)
     pygame.draw.line(screen, LINE, (400, 0), (400, 600), 8)
-
-
-drawing_lines()
 
 
 def player1(pos_x, pos_y):
@@ -98,10 +95,48 @@ def player2(pos_x, pos_y):
         xOxList[8] = 'O'
 
 
+def win_condition():
+    if counter % 2 == 1:
+        winner = 'X'
+    else:
+        winner = 'O'
+    # sütun
+    if xOxList[0] == xOxList[1] == xOxList[2]:
+        print(winner + ' kazandı')
+    if xOxList[3] == xOxList[4] == xOxList[5]:
+        print(winner + ' kazandı')
+    if xOxList[6] == xOxList[7] == xOxList[8]:
+        print(winner + ' kazandı')
+
+    # satır
+    if xOxList[0] == xOxList[3] == xOxList[6]:
+        print(winner + ' kazandı')
+    if xOxList[1] == xOxList[4] == xOxList[7]:
+        print(winner + ' kazandı')
+    if xOxList[2] == xOxList[5] == xOxList[8]:
+        print(winner + 'kazandı')
+
+    # diagonal
+    if xOxList[0] == xOxList[4] == xOxList[8]:
+        print(winner + ' kazandı')
+    if xOxList[2] == xOxList[4] == xOxList[6]:
+        print(winner + ' kazandı')
+
+
+counter = 0
+
+
 def game(pos_x, pos_y):
-    player1(pos_x,pos_y)
+    global counter
+    counter += 1
+    if counter % 2 == 1:
+        player1(pos_x, pos_y)
+    else:
+        player2(pos_x, pos_y)
+    win_condition()
 
 
+drawing_lines()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONUP:
