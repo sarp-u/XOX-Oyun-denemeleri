@@ -1,4 +1,5 @@
-import pygame, sys
+import pygame
+import sys
 
 TEAL = (0, 128, 128)
 LINE = (0, 100, 100)
@@ -6,6 +7,7 @@ WHITE = (240, 240, 240)
 BLACK = (30, 30, 30)
 
 xOxList = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+isFull = [False, False, False, False, False, False, False, False, False]
 
 pygame.init()
 screen = pygame.display.set_mode((600, 600))
@@ -22,77 +24,115 @@ def drawing_lines():
 
 def player1(pos_x, pos_y):
     # Birinci sütun
-    if pos_x <= 190 and pos_y <= 190:
+    global counter
+    if pos_x <= 190 and pos_y <= 190 and not isFull[0]:
         pygame.draw.line(screen, WHITE, (35, 35), (160, 160), 8)
         pygame.draw.line(screen, WHITE, (160, 35), (35, 160), 8)
         xOxList[0] = 'X'
-    if pos_x <= 190 and (190 < pos_y < 380):
+        isFull[0] = True
+        counter += 1
+    if pos_x <= 190 and (190 < pos_y < 380) and not isFull[1]:
         pygame.draw.line(screen, WHITE, (35, 240), (160, 365), 8)
         pygame.draw.line(screen, WHITE, (160, 240), (35, 365), 8)
         xOxList[1] = 'X'
-    if pos_x <= 190 and (380 < pos_y < 570):
+        isFull[1] = True
+        counter += 1
+    if pos_x <= 190 and (380 < pos_y < 570 and not isFull[2]):
         pygame.draw.line(screen, WHITE, (35, 435), (160, 560), 8)
         pygame.draw.line(screen, WHITE, (160, 435), (35, 560), 8)
         xOxList[2] = 'X'
+        isFull[2] = True
+        counter += 1
     # # İkinci sütun
-    if (190 < pos_x <= 380) and pos_y <= 190:
+    if (190 < pos_x <= 380) and pos_y <= 190 and not isFull[3]:
         pygame.draw.line(screen, WHITE, (240, 35), (365, 160), 8)
         pygame.draw.line(screen, WHITE, (365, 35), (240, 160), 8)
         xOxList[3] = 'X'
-    if (190 < pos_x <= 380) and (190 < pos_y < 380):
+        isFull[3] = True
+        counter += 1
+    if (190 < pos_x <= 380) and (190 < pos_y < 380) and not isFull[4]:
         pygame.draw.line(screen, WHITE, (240, 240), (365, 365), 8)
         pygame.draw.line(screen, WHITE, (365, 240), (240, 365), 8)
         xOxList[4] = 'X'
-    if (190 < pos_x <= 380) and (380 < pos_y < 570):
+        isFull[4] = True
+        counter += 1
+    if (190 < pos_x <= 380) and (380 < pos_y < 570) and not isFull[5]:
         pygame.draw.line(screen, WHITE, (240, 435), (365, 560), 8)
         pygame.draw.line(screen, WHITE, (365, 435), (240, 560), 8)
         xOxList[5] = 'X'
+        isFull[5] = True
+        counter += 1
     # Üçüncü sütun
-    if (380 < pos_x <= 570) and pos_y <= 190:
+    if (380 < pos_x <= 570) and pos_y <= 190 and not isFull[6]:
         pygame.draw.line(screen, WHITE, (435, 35), (560, 160), 8)
         pygame.draw.line(screen, WHITE, (560, 35), (435, 160), 8)
         xOxList[6] = 'X'
-    if (380 < pos_x <= 570) and (190 < pos_y < 380):
+        isFull[6] = True
+        counter += 1
+    if (380 < pos_x <= 570) and (190 < pos_y < 380) and not isFull[7]:
         pygame.draw.line(screen, WHITE, (435, 240), (560, 365), 8)
         pygame.draw.line(screen, WHITE, (560, 240), (435, 365), 8)
         xOxList[7] = 'X'
-    if (380 < pos_x <= 570) and (380 < pos_y < 570):
+        isFull[7] = True
+        counter += 1
+    if (380 < pos_x <= 570) and (380 < pos_y < 570) and not isFull[8]:
         pygame.draw.line(screen, WHITE, (435, 435), (560, 560), 8)
         pygame.draw.line(screen, WHITE, (560, 435), (435, 560), 8)
         xOxList[8] = 'X'
+        isFull[8] = True
+        counter += 1
 
 
 def player2(pos_x, pos_y):
     # Birinci sütun
-    if pos_x <= 190 and pos_y <= 190:
+    global counter
+    if pos_x <= 190 and pos_y <= 190 and not isFull[0]:
         pygame.draw.circle(screen, BLACK, (100, 100), 70, 5)
         xOxList[0] = 'O'
-    if pos_x <= 190 and (190 < pos_y < 380):
+        isFull[0] = True
+        counter += 1
+    if pos_x <= 190 and (190 < pos_y < 380) and not isFull[1]:
         pygame.draw.circle(screen, BLACK, (100, 300), 70, 5)
         xOxList[1] = 'O'
-    if pos_x <= 190 and (380 < pos_y < 570):
+        isFull[1] = True
+        counter += 1
+    if pos_x <= 190 and (380 < pos_y < 570) and not isFull[2]:
         pygame.draw.circle(screen, BLACK, (100, 500), 70, 5)
         xOxList[2] = 'O'
+        isFull[2] = True
+        counter += 1
     # İkinci sütun
-    if (190 < pos_x <= 380) and pos_y <= 190:
+    if (190 < pos_x <= 380) and pos_y <= 190 and not isFull[3]:
         pygame.draw.circle(screen, BLACK, (300, 100), 70, 5)
         xOxList[3] = 'O'
-    if (190 < pos_x <= 380) and (190 < pos_y < 380):
+        isFull[3] = True
+        counter += 1
+    if (190 < pos_x <= 380) and (190 < pos_y < 380) and not isFull[4]:
         pygame.draw.circle(screen, BLACK, (300, 300), 70, 5)
         xOxList[4] = 'O'
-    if (190 < pos_x <= 380) and (380 < pos_y < 570):
+        isFull[4] = True
+        counter += 1
+    if (190 < pos_x <= 380) and (380 < pos_y < 570) and not isFull[5]:
         pygame.draw.circle(screen, BLACK, (300, 500), 70, 5)
         xOxList[5] = 'O'
+        isFull[5] = True
+        counter += 1
     # Üçüncü sütun
-    if (380 < pos_x <= 570) and pos_y <= 190:
+    if (380 < pos_x <= 570) and pos_y <= 190 and not isFull[6]:
         pygame.draw.circle(screen, BLACK, (500, 100), 70, 5)
         xOxList[6] = 'O'
-    if (380 < pos_x <= 570) and (190 < pos_y < 380):
+        isFull[6] = True
+        counter += 1
+    if (380 < pos_x <= 570) and (190 < pos_y < 380) and not isFull[7]:
         pygame.draw.circle(screen, BLACK, (500, 300), 70, 5)
         xOxList[7] = 'O'
-    if (380 < pos_x <= 570) and (380 < pos_y < 570):
+        isFull[7] = True
+        counter += 1
+    if (380 < pos_x <= 570) and (380 < pos_y < 570) and not isFull[8]:
         pygame.draw.circle(screen, BLACK, (500, 500), 70, 5)
         xOxList[8] = 'O'
+        isFull[8] = True
+        counter += 1
 
 
 def win_condition():
@@ -114,7 +154,7 @@ def win_condition():
     if xOxList[1] == xOxList[4] == xOxList[7]:
         print(winner + ' kazandı')
     if xOxList[2] == xOxList[5] == xOxList[8]:
-        print(winner + 'kazandı')
+        print(winner + ' kazandı')
 
     # diagonal
     if xOxList[0] == xOxList[4] == xOxList[8]:
@@ -128,8 +168,7 @@ counter = 0
 
 def game(pos_x, pos_y):
     global counter
-    counter += 1
-    if counter % 2 == 1:
+    if counter % 2 == 0:
         player1(pos_x, pos_y)
     else:
         player2(pos_x, pos_y)
