@@ -163,13 +163,18 @@ def win_condition():
 
 
 def announce_winner():
-    if counter % 2 == 1:
-        winner = 'X'
-    else:
-        winner = 'O'
-    pygame.draw.rect(screen, TEAL, (208, 208, 180, 180))
+    is_won = win_condition()
     font = pygame.font.SysFont('', 24)
-    img = font.render(winner + ' Kazandı', True, WHITE)
+    if not is_won:
+        pygame.draw.rect(screen, TEAL, (208, 208, 180, 180))
+        img = font.render('Berabere', True, WHITE)
+    if is_won:
+        if counter % 2 == 1:
+            winner = 'X'
+        if counter % 2 == 0:
+            winner = 'O'
+        pygame.draw.rect(screen, TEAL, (208, 208, 180, 180))
+        img = font.render(winner + ' Kazandı', True, WHITE)
     screen.blit(img, (260, 250))
     img2 = font.render('Restart (R)', True, WHITE)
     screen.blit(img2, (260, 330))
@@ -182,7 +187,7 @@ def game(pos_x, pos_y):
     else:
         player2(pos_x, pos_y)
     is_won = win_condition()
-    if is_won:
+    if is_won or counter == 9:
         for i in range(9):
             isFull[i] = True
         announce_winner()
